@@ -1,0 +1,788 @@
+
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+screenGui.Name = "ProjectEULARIA"
+screenGui.ResetOnSpawn = false
+
+local neonGreen = Color3.fromRGB(153, 255, 0)
+local black = Color3.fromRGB(0, 0, 0)
+local white = Color3.fromRGB(255, 255, 255)
+
+-- Botón Add Script
+local addScriptBtn = Instance.new("TextButton", addFrame)
+addScriptBtn.Size = UDim2.new(0.9, 0, 0, 35)
+addScriptBtn.Position = UDim2.new(0.05, 0, 0, 120)
+addScriptBtn.BackgroundColor3 = black
+addScriptBtn.BorderColor3 = neonGreen
+addScriptBtn.BorderSizePixel = 3
+addScriptBtn.TextColor3 = white
+addScriptBtn.Font = Enum.Font.SourceSansBold
+addScriptBtn.TextScaled = true
+addScriptBtn.Text = "Add Script"
+
+
+local allScripts = {
+
+
+{Text = "No work", URL = ""},
+	{Text = "R6", URL = "https://raw.githubusercontent.com/sunday102711-bit/E00KIDD-r6-by-me/refs/heads/main/R6%20Real"},	
+	{Text = "Polaria", URL = "https://rawscripts.net/raw/Universal-Script-Polaria-loadstring-35739"},	
+{Text = "1x1x1x1", URL = "https://raw.githubusercontent.com/moedlol/1x1x1x1/refs/heads/main/GUI"},
+	{Text = "Infinite Yield", URL = "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"},
+	{Text = "c00lgui", URL = "https://raw.githubusercontent.com/UnknownOfficial666/c00lkidd-gui/refs/heads/main/gui.lua"},
+	{Text = "K00pgui V8", URL = "https://rawscripts.net/raw/Universal-Script-K00pgui-v8-11511"},
+	{Text = "Noot noot", URL = "https://pastefy.app/qyQrcyyX/raw"},
+	{Text = "1x3x5x6 Gui", URL = "https://rawscripts.net/raw/Universal-Script-1x3x5x6-gui-41909"},
+	{Text = "Fly Gui v3", URL = "https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"},
+	{Text = "g00byd0lan Gui v8", URL = "https://raw.githubusercontent.com/YepimSirPwnsAlot/Frontlines-exploit-hub/refs/heads/main/Undetected%20Skid%20gui"}, 
+{Text = "Nebula Star", URL = "https://pastebin.com/raw/ieJZauwd"},
+{Text = "GhostHub", URL = "https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub"},
+{Text = "Keyboard", URL = "https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"},
+{Text = "c00lkidd2 gui FE", URL = "https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/ckid"},
+{Text = "Acorn on top Incidient gui", URL = "https://pastefy.app/FKBsU94D/raw"},
+{Text = "john doe", URL = "https://rawscripts.net/raw/Client-Replication-John-doe-up-by-gojohdkaisenkt-34198"},
+{Text = "1x1x1x1 Hax gui v2", URL = "https://pastefy.app/MYWHQPCX/raw?part=1x1x1x1x1_HAX%20Gui%20V2"},
+{Text = "John Doe serverside", URL = "https://raw.githubusercontent.com/Sugm4Bullet1/LuaXXccL/refs/heads/main/johndoeSS.txt"},
+{Text = "g00bygui v3", URL = "https://rawscripts.net/raw/Universal-Script-g00bygui-v3-10359"},
+{Text = "k00pgui remake", URL = "https://rawscripts.net/raw/Universal-Script-K00pguo-Lua-nothing-works-today-42705"},
+{Text = "Grandosla", URL = "https://pastefy.app/Kql9VClT/raw"},
+{Text = "dominant by jox 1.0.0.0", URL = "https://pastefy.app/Ysng6BeD/raw?part=Dominant%20Executor%20by%20 jox%20inspire%20in%20epik"},
+{Text = "Ruruxploit 7.0", URL = "https://pastebin.com/raw/zQGANnnQ"},
+{Text = "k00pgui V10", URL = "https://rawscripts.net/raw/Universal-Script-k00pgui-V10-Lua-nothing-works-42934"},
+{Text = "k00pgui V6", URL = "https://rawscripts.net/raw/Universal-Script-k00pv6fixed-10380"},
+{Text = "FE Hax gui V2.0.2.1", URL = "https://pastebin.com/raw/gr3XZwUY"},
+{Text = "Project Duck ultimate", URL = "https://pastefy.app/RX1PYZs1/raw"},
+{Text = "k00pgui V6", URL = "https://rawscripts.net/raw/Universal-Script-k00pv6fixed-10380"},
+{Text = "Bomb vest v2", URL = "https://rawscripts.net/raw/Universal-Script-bomb-vest-v2-43953"},
+{Text = "p00lgui pocket edition by redkidd", URL = "https://pastefy.app/LH5mdWwm/raw"},
+{Text = "project ligma", URL = "https://rawscripts.net/raw/Universal-Script-Proyecto-Ligma-43520"},
+{Text = "topk3k 0.8", URL = "https://raw.githubusercontent.com/LuaGunsX/LuasLegacyScripts/main/%5BGUI%5D%20T0PK3K%200.8"},
+{Text = "topk3k 4.0", URL = "https://raw.githubusercontent.com/c-1-23/c-1-23/refs/heads/main/T0PK3K%204.0"},
+{Text = "Mini stigma ultimate", URL = "https://rawscripts.net/raw/Universal-Script-stigma-ultimate-29802"},
+{Text = "Stigma ultimate", URL = "https://rawscripts.net/raw/Universal-Script-Stigma-Ultimate-Executor-FE-48412"},
+{Text = "SoulX FE", URL = "https://pastefy.app/xOJJQ4SV/raw"},
+{Text = "topk3k 3.0", URL = "https://rawscripts.net/raw/Natural-Disaster-Survival-idk-script-t0pk3k-29594"},
+{Text = "1x1x1x1x1 hax mini gui", URL = "https://pastefy.app/4U9m0vuN/raw?part=1x1x1x1x1_hax%20Gui%20mini%20edition"},
+    {Text = "Syntex Backdoor V1.2.0", URL = "https://raw.githubusercontent.com/etgaby33/sb1.2.0/refs/heads/main/sb1.2.0lua.txt"},
+    {Text = "SSP by erased_luah4x", URL = "https://raw.githubusercontent.com/ProBypasserHax1/Idkkk/refs/heads/main/SSP%20BY%20ME.lua"},
+    {Text = "c00lkidd2 admin panel reborn v0.6 by 0O7m7", URL = "https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/apanel"},
+{Text = "Project Zaga", URL = "https://pastefy.app/rMyVKrO6/raw"},
+{Text = "project megma v1", URL = "https://pastefy.app/g2uPeXEr/raw"},
+    {Text = "Project Megma V1.2", URL = "https://pastefy.app/PRxmiQ85/raw"},
+{Text = "project megma v2 remake", URL = "https://pastefy.app/GiEm6AH8/raw"},
+{Text = "project Segma V1", URL = "https://pastefy.app/KU9wbLHe/raw"},
+{Text = "project segma V2", URL = "https://pastefy.app/EUwYT4gN/raw"},
+{Text = "Project Segma V3", URL = "https://pastefy.app/Bdyj0CHG/raw"},
+{Text = "project segma v4 (cancelled and leaked)", URL = "https://pastefy.app/a2VxTbDs/raw"},
+    {Text = "c00lgui 2.0 by TC0LKIDD", URL = "https://pastefy.app/mWcU6ACM/raw"},
+{Text = "K00pgui v2 reborn", URL = "https://raw.githubusercontent.com/rusello25/scripts/refs/heads/main/k00pguii"},
+{Text = "c00lgui reimagined", URL = "https://raw.githubusercontent.com/rusello25/scripts/refs/heads/main/c00lgui%20reimaginedd"},
+{Text = "Patrick", URL = "https://rawscripts.net/raw/Universal-Script-Patrick-wraith-37449"},
+{Text = "ExSer New", URL = "https://pastefy.app/7sO8ckTL/raw"},
+
+{Text = "Mr bye bye", URL = "https://pastefy.app/PmY6Mdvo/raw"},
+
+{Text = "C4 bomb", URL = "https://pastefy.app/M0r9UCNQ/raw"},
+
+{Text = "banzai bazooka fanmade", URL = "https://pt.textbin.net/raw/fby66hrjqe"},
+
+{Text = "Annonymous Destruction", URL = "https://pastefy.app/iAr4FMr3/raw"},
+{Text = "ALLAH ARABIC MAP", URL = "https://pastebin.com/raw/NNp1NJKT"},
+
+{Text = "COFFE Map", URL = "https://web.archive.org/web/20230331215846/https://pastebin.com/raw/HtUABLMJ"},
+
+{Text = "PROJECT 007N7", URL = "https://pastebin.com/raw/v0hzsfEV"},
+
+{Text = "PROJECT 007n7 TXT", URL = "https://pastebin.com/raw/fYQCCQ3v"},
+
+ {Text = "Super project by g00by666", URL = "https://raw.githubusercontent.com/g00byd0lanxdd/team-super-secret/refs/heads/main/team%20super%20secret"},
+
+ {Text = "PROJECT 3XEN0", URL = "https://raw.githubusercontent.com/3xen0kidd/ProjextLigma/refs/heads/main/obfuscated_script-1748044783577.lua.txt"}, 
+
+{Text = ".X.n0.g.i.", URL = "https://pastebin.com/raw/L9Tw2uBw"},
+
+{Text = "c00lgui v3 by verfied", URL = "https://pastebin.com/raw/ucuPtN97"},
+
+    {Text = "Cle0n Normal Gui", URL = "https://pastefy.app/Rumvf4tQ/raw"}, 
+
+  {Text = "Rc7 2016 (Made By Hatai Key:HTeam)", URL = "https://pastefy.app/2VJlXqxm/raw"},
+
+        {Text = "Project Baller", URL = "https://gist.githubusercontent.com/gagaamza/d5c91e99f7f31e450817c73de16f7e38/raw/855e5a40280cbeb5369d6c8c22243b0c35e9e735/gistfile1.txt"},
+
+        {Text = "Uzi V4 premium (made by npc)", URL = "https://pastefy.app/SWW44QaM/raw"},
+
+    {Text = "1x1x1x1's FE GUI (Client-Sided)", URL = "https://raw.githubusercontent.com/MrWitzbold/1x1x1x1-Gui/refs/heads/main/main.lua"},
+
+{Text = "c00lgui revival by hyperion (mobile support)", URL = "https://raw.githubusercontent.com/c00lkiddzkj/ultimate-c00lgui-revival/refs/heads/main/ultimate%20c00lgui%20revival"},
+
+{Text = "TC0LIFFY V6", URL = "https://pastefy.app/Zr2QlV0R/raw"}, 
+{Text = "TC0LIFFY V4", URL = "https://rawscripts.net/raw/Universal-Script-TC0LIFFY-V4-42489"}, 
+{Text = "TC0LIFFY V3", URL = "https://rawscripts.net/raw/Universal-Script-TC0LIFFY-RETR0-V3-38631"}, 
+{Text = "TC0LIFFY V2", URL = "https://rawscripts.net/raw/Universal-Script-Tc0liffy-Pocket-v2-38622"}, 
+{Text = "TC0LIFFY V1", URL = "https://rawscripts.net/raw/Universal-Script-Tcoliffy-Pocket-v1-38367"}, 
+{Text = "TC0LIFFY reborn", URL = "https://rawscripts.net/raw/Universal-Script-Upload1-38594"}, 
+{Text = "TC0LIFFY V4 pocket", URL = "https://pastefy.app/dWdNO8lL/raw"}, 
+{Text = "n00zgui pocket require", URL = "https://pastefy.app/GnVU68pD/raw"}, 
+   {Text = "Project sundual 1.0", URL = "https://pastebin.com/raw/fTGwf9EF"}, 
+        {Text = "Hyperion SS", URL = "https://pastebin.com/raw/VpV0WGhU"}, 
+        {Text = "project nyan kat 1.0", URL = "https://pastefy.app/DI66ou47/raw"}, 
+  {Text = "Remium SS", URL = "https://pastebin.com/raw/LWWSaXY5"}, 
+        {Text = "G00by Troll Face Sky", URL = "https://pastefy.app/qSX9DXqJ/raw"}, 
+             {Text = "T0PK3K 5.0 remake", URL = "https://pastebin.com/raw/h1TN1kij"},
+
+    {Text = "L00L X Superx Gui (No Trade and No Script!)", URL = "https://pastebin.com/raw/Q02wdXef"},
+
+    {Text = "Private Gui By Cle0n", URL = "https://pastebin.com/raw/dPMidMa3"},
+
+    {Text = "Private Gui by 005n5n77", URL = "https://pastebin.com/raw/MPNijDsd"},
+
+    {Text = "L00L Super Duper Private GUI V3", URL = "https://pastebin.com/raw/1nM6pGVM"},
+
+    {Text = "L00L Private Gui V1", URL = "https://pastebin.com/raw/9iQErXHG"},
+
+    {Text = "Private Gui Super Private Gui by Anonymous", URL = "https://pastebin.com/raw/BDguUuUx"},
+
+    {Text = "Project Fire V1.1 By Polemenus", URL = "https://pastebin.com/raw/a79VQ4ex"},
+
+    {Text = "Private Gui 1.35", URL = "https://raw.githubusercontent.com/Hanif290/DigsaeyAiijjllnvv/refs/heads/main/Aiisisndndsn"},
+
+    {Text = "Super Private Gui by Sigmaz", URL = "https://raw.githubusercontent.com/Hanif290/SigmaHubV2/refs/heads/main/SigmaHubV2"},
+
+{Text = "JOX V5.6 GUI", URL = "https://pastefy.app/3ZSMrM2X/raw"}, 
+
+    {Text = "Private Gui by Hanif", URL = "https://raw.githubusercontent.com/Hanif290/SigmaHub/refs/heads/main/SigmaHub"},
+
+    {Text = "Sigma Gui (Private GUI)", URL = "https://pastes.io/raw/private-53"},
+
+    {Text = "Asder10065 Gui", URL = "https://pastebin.com/raw/56j42jkA"},
+
+    {Text = "Private Gui by 005n5n77 1.5", URL = "https://pastebin.com/raw/9XSYjVrm"},
+
+    {Text = "1x1x1x1x1 Super Private Gui v5.40", URL = "https://pastebin.com/raw/ERRk4rvM"},
+
+    {Text = "Proximity 15 (Key Proximity6H)", URL= "https://raw.githubusercontent.com/HyperionV8/Proximity-Private-Hub/refs/heads/main/obfuscated_script-1745069419608.lua.txt"},
+
+    {Text = "Febypass SSP", URL = "https://pastefy.app/t2gUwfXy/raw"},
+
+    {Text = "Project Broken Spawn V2", URL = "https://pastefy.app/2jryI9yo/raw"},
+
+    {Text = "Nyan Cat Skybox", URL = "https://rawscripts.net/raw/Universal-Script-TXT-NyancatSkybox-43395"},
+
+}
+
+local mainFrame = Instance.new("Frame", screenGui)
+mainFrame.Size = UDim2.new(0, 470, 0, 250)
+mainFrame.Position = UDim2.new(0.25, 0, 0.25, 0)
+mainFrame.BackgroundColor3 = black
+mainFrame.BorderColor3 = neonGreen
+mainFrame.BorderSizePixel = 4
+mainFrame.Active = true
+mainFrame.Draggable = true
+
+local topBar = Instance.new("Frame", mainFrame)
+topBar.Size = UDim2.new(1, 0, 0, 30)
+topBar.BackgroundColor3 = black
+topBar.BorderColor3 = neonGreen
+topBar.BorderSizePixel = 2
+
+local function createTab(name, posX, width, isButton)
+	local tab
+	if isButton then
+		tab = Instance.new("TextButton", topBar)
+	else
+		tab = Instance.new("TextLabel", topBar)
+	end
+	tab.Size = UDim2.new(0, width, 1, 0)
+	tab.Position = UDim2.new(0, posX, 0, 0)
+	tab.BackgroundColor3 = black
+	tab.BorderColor3 = neonGreen
+	tab.BorderSizePixel = 2
+	tab.Font = Enum.Font.SourceSansBold
+	tab.TextColor3 = white
+	tab.TextScaled = true
+	tab.Text = name
+	if isButton then tab.AutoButtonColor = false end
+	return tab
+end
+
+local tab1 = createTab("Project EULARIA", 0, 140, false)
+local tab2 = createTab("Home", 140, 80, true)
+local tab3 = createTab("Scripts", 220, 80, true)
+local tab4 = createTab("Extra", 300, 80, true)
+local collapseBtn = createTab("-", 380, 30, true)
+
+local squareBtn = Instance.new("TextButton", topBar)
+squareBtn.Size = UDim2.new(0, 30, 1, 0)
+squareBtn.Position = UDim2.new(0, 410, 0, 0)
+squareBtn.BackgroundColor3 = black
+squareBtn.BorderColor3 = neonGreen
+squareBtn.BorderSizePixel = 2
+squareBtn.Text = "□"
+squareBtn.Font = Enum.Font.SourceSansBold
+squareBtn.TextColor3 = white
+squareBtn.TextScaled = true
+
+local closeBtn = createTab("X", 440, 30, true)
+
+local contentFrame = Instance.new("Frame", mainFrame)
+contentFrame.Position = UDim2.new(0, 0, 0, 30)
+contentFrame.Size = UDim2.new(0.75, 0, 1, -30)
+contentFrame.BackgroundColor3 = black
+contentFrame.BorderColor3 = neonGreen
+contentFrame.BorderSizePixel = 2
+
+local profileImage = Instance.new("ImageLabel", contentFrame)
+profileImage.Size = UDim2.new(0, 100, 0, 100)
+profileImage.Position = UDim2.new(0, 10, 0, 10)
+profileImage.BackgroundColor3 = white
+profileImage.Image = "https://www.roblox.com/headshot-thumbnail/image?userId=" .. player.UserId .. "&width=420&height=420&format=png"
+
+local nameLabel = Instance.new("TextLabel", contentFrame)
+nameLabel.Size = UDim2.new(1, -130, 0, 100)
+nameLabel.Position = UDim2.new(0, 120, 0, 20)
+nameLabel.BackgroundTransparency = 1
+nameLabel.Font = Enum.Font.SourceSansBold
+nameLabel.TextColor3 = white
+nameLabel.TextSize = 18
+nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+nameLabel.TextYAlignment = Enum.TextYAlignment.Top
+nameLabel.RichText = true
+nameLabel.Text = string.format([[<b>welcome, %s</b><br/><b>To project eularia!</b><br/><font color="rgb(0,255,0)"><b>FE:Enable!</b></font>]], player.DisplayName)
+
+local userTag = Instance.new("TextLabel", contentFrame)
+userTag.Size = UDim2.new(0, 150, 0, 20)
+userTag.Position = UDim2.new(0, 10, 0, 110)
+userTag.BackgroundTransparency = 1
+userTag.Font = Enum.Font.SourceSans
+userTag.TextSize = 14
+userTag.TextColor3 = white
+userTag.Text = "@" .. player.Name
+
+local scriptsFrame = Instance.new("ScrollingFrame", mainFrame)
+scriptsFrame.Position = UDim2.new(0, 0, 0, 30)
+scriptsFrame.Size = UDim2.new(0.75, 0, 1, -30)
+scriptsFrame.BackgroundColor3 = black
+scriptsFrame.BorderColor3 = neonGreen
+scriptsFrame.BorderSizePixel = 2
+scriptsFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- lo dejamos dinámico
+scriptsFrame.ScrollBarThickness = 6
+scriptsFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+scriptsFrame.Visible = false
+
+-- 🔹 Función para actualizar el tamaño del scroll según los botones
+local function updateCanvasSize()
+	local totalButtons = 0
+	for _, child in ipairs(scriptsFrame:GetChildren()) do
+		if child:IsA("TextButton") then
+			totalButtons += 1
+		end
+	end
+	scriptsFrame.CanvasSize = UDim2.new(0, 0, 0, totalButtons * 35)
+end
+
+-- 🔹 Crear los botones iniciales desde allScripts
+for i, scriptInfo in ipairs(allScripts) do
+	local btn = Instance.new("TextButton", scriptsFrame)
+	btn.Size = UDim2.new(1, -10, 0, 30)
+	btn.Position = UDim2.new(0, 5, 0, (i - 1) * 35)
+	btn.BackgroundColor3 = black
+	btn.BorderColor3 = neonGreen
+	btn.BorderSizePixel = 2
+	btn.TextColor3 = white
+	btn.Font = Enum.Font.SourceSansBold
+	btn.TextScaled = true
+	btn.Text = scriptInfo.Text
+	btn.MouseButton1Click:Connect(function()
+		loadstring(game:HttpGet(scriptInfo.URL))()
+	end)
+
+	updateCanvasSize() -- 🔥 actualiza el scroll cada vez que se añade un botón
+end
+local extraFrame = Instance.new("Frame", mainFrame)
+extraFrame.Position = UDim2.new(0, 0, 0, 30)
+extraFrame.Size = UDim2.new(0.75, 0, 1, -30)
+extraFrame.BackgroundColor3 = black
+extraFrame.BorderColor3 = neonGreen
+extraFrame.BorderSizePixel = 2
+extraFrame.Visible = false
+
+-- Botón "Add" en scriptsFrame (primer botón siempre)
+local addBtn = Instance.new("TextButton", scriptsFrame)
+addBtn.Size = UDim2.new(1, -10, 0, 30)
+addBtn.Position = UDim2.new(0, 5, 0, 0) -- arriba del todo
+addBtn.BackgroundColor3 = black
+addBtn.BorderColor3 = neonGreen
+addBtn.BorderSizePixel = 2
+addBtn.TextColor3 = white
+addBtn.Font = Enum.Font.SourceSansBold
+addBtn.TextScaled = true
+addBtn.Text = "Add"
+
+-- Ventana que se abre con el botón Add
+local addFrame = Instance.new("Frame", screenGui)
+addFrame.Size = UDim2.new(0, 300, 0, 200)
+addFrame.Position = UDim2.new(0.5, -150, 0.5, -100) -- centrado
+addFrame.BackgroundColor3 = black
+addFrame.BorderColor3 = neonGreen
+addFrame.BorderSizePixel = 3
+addFrame.Visible = false
+
+-- 🔹 Quitamos bordes redondeados y sombra, queda cuadrado con borde verde
+
+-- Título de la ventana
+local addTitle = Instance.new("TextLabel", addFrame)
+addTitle.Size = UDim2.new(1, -40, 0, 30)
+addTitle.Position = UDim2.new(0, 10, 0, 5)
+addTitle.BackgroundTransparency = 1
+addTitle.Font = Enum.Font.SourceSansBold
+addTitle.TextColor3 = white
+addTitle.TextScaled = true
+addTitle.Text = "Add Script"
+
+-- Botón de cerrar (X)
+local closeAdd = Instance.new("TextButton", addFrame)
+closeAdd.Size = UDim2.new(0, 30, 0, 30)
+closeAdd.Position = UDim2.new(1, -35, 0, 5)
+closeAdd.BackgroundColor3 = black
+closeAdd.BorderColor3 = neonGreen
+closeAdd.BorderSizePixel = 2
+closeAdd.TextColor3 = white
+closeAdd.Font = Enum.Font.SourceSansBold
+closeAdd.TextScaled = true
+closeAdd.Text = "X"
+
+-- Primer TextBox
+local addTextBox1 = Instance.new("TextBox", addFrame)
+addTextBox1.Size = UDim2.new(0.9, 0, 0, 30)
+addTextBox1.Position = UDim2.new(0.05, 0, 0, 40)
+addTextBox1.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+addTextBox1.TextColor3 = white
+addTextBox1.PlaceholderText = "Nombre del Script"
+addTextBox1.Font = Enum.Font.SourceSans
+addTextBox1.TextSize = 16
+addTextBox1.ClearTextOnFocus = false
+
+-- Segundo TextBox
+local addTextBox2 = Instance.new("TextBox", addFrame)
+addTextBox2.Size = UDim2.new(0.9, 0, 0, 30)
+addTextBox2.Position = UDim2.new(0.05, 0, 0, 80)
+addTextBox2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+addTextBox2.TextColor3 = white
+addTextBox2.PlaceholderText = "URL del Script"
+addTextBox2.Font = Enum.Font.SourceSans
+addTextBox2.TextSize = 16
+addTextBox2.ClearTextOnFocus = false
+
+-- Botón "Add" dentro de scriptsFrame
+local addBtn = Instance.new("TextButton", scriptsFrame)
+addBtn.Size = UDim2.new(1, -10, 0, 30)
+addBtn.Position = UDim2.new(0, 5, 0, 0)
+addBtn.BackgroundColor3 = black
+addBtn.BorderColor3 = neonGreen
+addBtn.BorderSizePixel = 2
+addBtn.TextColor3 = white
+addBtn.Font = Enum.Font.SourceSansBold
+addBtn.TextScaled = true
+addBtn.Text = "Add"
+
+-- Ventana centrada en pantalla
+local addFrame = Instance.new("Frame", screenGui)
+local frameWidth, frameHeight = 300, 200
+addFrame.Size = UDim2.new(0, frameWidth, 0, frameHeight)
+addFrame.Position = UDim2.new(0.5, -frameWidth/2, 0.5, -frameHeight/2)
+addFrame.BackgroundColor3 = black
+addFrame.BorderColor3 = neonGreen
+addFrame.BorderSizePixel = 3
+addFrame.Visible = false
+
+-- Título
+local addTitle = Instance.new("TextLabel", addFrame)
+addTitle.Size = UDim2.new(1, -40, 0, 30)
+addTitle.Position = UDim2.new(0, 10, 0, 5)
+addTitle.BackgroundTransparency = 1
+addTitle.Font = Enum.Font.SourceSansBold
+addTitle.TextColor3 = white
+addTitle.TextScaled = true
+addTitle.Text = "Add Script"
+
+-- Botón cerrar
+local closeAdd = Instance.new("TextButton", addFrame)
+closeAdd.Size = UDim2.new(0, 30, 0, 30)
+closeAdd.Position = UDim2.new(1, -35, 0, 5)
+closeAdd.BackgroundColor3 = black
+closeAdd.BorderColor3 = neonGreen
+closeAdd.BorderSizePixel = 2
+closeAdd.TextColor3 = white
+closeAdd.Font = Enum.Font.SourceSansBold
+closeAdd.TextScaled = true
+closeAdd.Text = "X"
+closeAdd.MouseButton1Click:Connect(function()
+    addFrame.Visible = false
+end)
+
+-- TextBox Nombre
+local addTextBox1 = Instance.new("TextBox", addFrame)
+addTextBox1.Size = UDim2.new(0.9, 0, 0, 30)
+addTextBox1.Position = UDim2.new(0.05, 0, 0, 40)
+addTextBox1.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+addTextBox1.TextColor3 = white
+addTextBox1.PlaceholderText = "Name of the Script"
+addTextBox1.Font = Enum.Font.SourceSans
+addTextBox1.TextSize = 16
+addTextBox1.ClearTextOnFocus = false
+
+-- TextBox URL
+local addTextBox2 = Instance.new("TextBox", addFrame)
+addTextBox2.Size = UDim2.new(0.9, 0, 0, 30)
+addTextBox2.Position = UDim2.new(0.05, 0, 0, 80)
+addTextBox2.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+addTextBox2.TextColor3 = white
+addTextBox2.PlaceholderText = "URL"
+addTextBox2.Font = Enum.Font.SourceSans
+addTextBox2.TextSize = 16
+addTextBox2.ClearTextOnFocus = false
+
+-- Botón Add Script
+local addScriptBtn = Instance.new("TextButton", addFrame)
+addScriptBtn.Size = UDim2.new(0.9, 0, 0, 35)
+addScriptBtn.Position = UDim2.new(0.05, 0, 0, 120)
+addScriptBtn.BackgroundColor3 = black
+addScriptBtn.BorderColor3 = neonGreen
+addScriptBtn.BorderSizePixel = 3
+addScriptBtn.TextColor3 = white
+addScriptBtn.Font = Enum.Font.SourceSansBold
+addScriptBtn.TextScaled = true
+addScriptBtn.Text = "Add Script"
+
+-- Función al presionar Add Script
+addScriptBtn.MouseButton1Click:Connect(function()
+	local newScript = {
+		Text = addTextBox1.Text,
+		URL = addTextBox2.Text
+	}
+	if newScript.Text ~= "" and newScript.URL ~= "" then
+		-- Insertar en la tabla allScripts para que quede en la lista
+		table.insert(allScripts, 1, newScript)
+
+		-- Crear botón en scriptsFrame
+		local btn = Instance.new("TextButton", scriptsFrame)
+		btn.Size = UDim2.new(1, -10, 0, 30)
+		btn.Position = UDim2.new(0, 5, 0, 35) -- arriba después de Add
+		btn.BackgroundColor3 = black
+		btn.BorderColor3 = neonGreen
+		btn.BorderSizePixel = 2
+		btn.TextColor3 = white
+		btn.Font = Enum.Font.SourceSansBold
+		btn.TextScaled = true
+		btn.Text = newScript.Text
+
+		btn.MouseButton1Click:Connect(function()
+			pcall(function()
+				loadstring(game:HttpGet(newScript.URL))()
+			end)
+		end)
+
+		-- Reposicionar demás botones
+		for i, child in ipairs(scriptsFrame:GetChildren()) do
+			if child:IsA("TextButton") and child ~= addBtn and child ~= btn then
+				child.Position = UDim2.new(0, 5, 0, child.Position.Y.Offset + 35)
+			end
+		end
+	end
+
+	-- Limpiar TextBoxes y cerrar ventana
+	addTextBox1.Text = ""
+	addTextBox2.Text = ""
+	addFrame.Visible = false
+end)
+
+-- Abrir ventana Add
+addBtn.MouseButton1Click:Connect(function()
+	addFrame.Visible = true
+end)
+
+-- About
+local aboutBtn = Instance.new("TextButton", extraFrame)
+aboutBtn.Size = UDim2.new(0.5, -10, 0, 35)
+aboutBtn.Position = UDim2.new(0, 5, 0, 5)
+aboutBtn.BackgroundColor3 = black
+aboutBtn.BorderColor3 = neonGreen
+aboutBtn.BorderSizePixel = 2
+aboutBtn.TextColor3 = white
+aboutBtn.Font = Enum.Font.SourceSansBold
+aboutBtn.TextScaled = true
+aboutBtn.Text = "About"
+aboutBtn.MouseButton1Click:Connect(function()
+	aboutFrame.Visible = not aboutFrame.Visible
+	executorFrame.Visible = false
+end)
+
+
+local aboutFrame = Instance.new("Frame", extraFrame)
+aboutFrame.Size = UDim2.new(1, -10, 0, 80)
+aboutFrame.Position = UDim2.new(0, 5, 0, 45)
+aboutFrame.BackgroundColor3 = black
+aboutFrame.BorderColor3 = neonGreen
+aboutFrame.BorderSizePixel = 2
+aboutFrame.Visible = false
+
+local aboutText = Instance.new("TextLabel", aboutFrame)
+aboutText.Size = UDim2.new(1, -100, 1, 0)
+aboutText.Position = UDim2.new(0, 100, 0, 0)
+aboutText.BackgroundTransparency = 1
+aboutText.Font = Enum.Font.SourceSansBold
+aboutText.TextColor3 = white
+aboutText.TextScaled = true
+aboutText.Text = "TC0 is owner of this GUI\n@co0lkidbv\n✅Connected\nUser Register Time: 19/2/25"
+
+local aboutImage = Instance.new("ImageLabel", aboutFrame)
+aboutImage.Size = UDim2.new(0, 80, 0, 80)
+aboutImage.Position = UDim2.new(0, 10, 0, 0)
+aboutImage.Image = "rbxthumb://type=Asset&id=120188017013123&w=420&h=420"
+-- Executor
+local executorBtn = Instance.new("TextButton", extraFrame)
+executorBtn.Size = UDim2.new(0.5, -10, 0, 35)
+executorBtn.Position = UDim2.new(0.5, 5, 0, 5)
+executorBtn.BackgroundColor3 = black
+executorBtn.BorderColor3 = neonGreen
+executorBtn.BorderSizePixel = 2
+executorBtn.TextColor3 = white
+executorBtn.Font = Enum.Font.SourceSansBold
+executorBtn.TextScaled = true
+executorBtn.Text = "Executor"
+
+-- Aquí se añade el bloque del executorFrame
+local executorFrame = Instance.new("Frame", extraFrame)
+executorFrame.Name = "executorFrame"
+executorFrame.Size = UDim2.new(1, -10, 0, 110)
+executorFrame.Position = UDim2.new(0, 5, 0, 85) -- justo debajo de los botones
+executorFrame.BackgroundColor3 = black
+executorFrame.BorderColor3 = neonGreen
+executorFrame.BorderSizePixel = 2
+executorFrame.Visible = false
+
+local scriptBox = Instance.new("TextBox", executorFrame)
+scriptBox.Size = UDim2.new(1, -10, 0, 60)
+scriptBox.Position = UDim2.new(0, 5, 0, 5)
+scriptBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+scriptBox.TextColor3 = white
+scriptBox.ClearTextOnFocus = false
+scriptBox.MultiLine = true
+scriptBox.TextWrapped = true
+scriptBox.TextXAlignment = Enum.TextXAlignment.Left
+scriptBox.TextYAlignment = Enum.TextYAlignment.Top
+scriptBox.Font = Enum.Font.Code
+scriptBox.TextSize = 14
+scriptBox.Text = ""
+
+local runButton = Instance.new("TextButton", executorFrame)
+runButton.Size = UDim2.new(0.5, -7, 0, 30)
+runButton.Position = UDim2.new(0, 5, 0, 70)
+runButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+runButton.BorderColor3 = neonGreen
+runButton.BorderSizePixel = 2
+runButton.TextColor3 = white
+runButton.Font = Enum.Font.SourceSansBold
+runButton.TextSize = 14
+runButton.Text = "Execute"
+runButton.MouseButton1Click:Connect(function()
+	pcall(function()
+		loadstring(scriptBox.Text)()
+	end)
+end)
+
+local clearButton = Instance.new("TextButton", executorFrame)
+clearButton.Size = UDim2.new(0.5, -7, 0, 30)
+clearButton.Position = UDim2.new(0.5, 2, 0, 70)
+clearButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+clearButton.BorderColor3 = neonGreen
+clearButton.BorderSizePixel = 2
+clearButton.TextColor3 = white
+clearButton.Font = Enum.Font.SourceSansBold
+clearButton.TextSize = 14
+clearButton.Text = "clear"
+clearButton.MouseButton1Click:Connect(function()
+	scriptBox.Text = ""
+end)
+
+executorBtn.MouseButton1Click:Connect(function()
+	executorFrame.Visible = not executorFrame.Visible
+	aboutFrame.Visible = false
+end)
+
+-- Recommended
+local recommendedFrame = Instance.new("ScrollingFrame", mainFrame)
+recommendedFrame.Position = UDim2.new(0.75, 0, 0.12, 0)
+recommendedFrame.Size = UDim2.new(0.25, 0, 0.88, 0)
+recommendedFrame.BackgroundColor3 = black
+recommendedFrame.BorderColor3 = neonGreen
+recommendedFrame.BorderSizePixel = 2
+recommendedFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
+recommendedFrame.ScrollBarThickness = 6
+recommendedFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+
+local recommendedLabel = Instance.new("TextLabel", recommendedFrame)
+recommendedLabel.Size = UDim2.new(1, -10, 0, 30)
+recommendedLabel.Position = UDim2.new(0, 5, 0, 0)
+recommendedLabel.BackgroundColor3 = black
+recommendedLabel.BorderColor3 = neonGreen
+recommendedLabel.BorderSizePixel = 2
+recommendedLabel.TextColor3 = white
+recommendedLabel.Font = Enum.Font.SourceSansBold
+recommendedLabel.TextScaled = true
+recommendedLabel.Text = "Recommended"
+
+local chosen = {}
+while #chosen < 13 do
+    local pick = allScripts[math.random(1, #allScripts)]
+    if pick.Text ~= "R6" and pick.Text ~= "No work" and not table.find(chosen, pick) then
+        table.insert(chosen, pick)
+    end
+end
+
+for i, scriptInfo in ipairs(chosen) do
+	local btn = Instance.new("TextButton", recommendedFrame)
+	btn.Size = UDim2.new(1, -10, 0, 30)
+	btn.Position = UDim2.new(0, 5, 0, 35 * i)
+	btn.BackgroundColor3 = black
+	btn.BorderColor3 = neonGreen
+	btn.BorderSizePixel = 2
+	btn.TextColor3 = white
+	btn.Font = Enum.Font.SourceSansBold
+	btn.TextScaled = true
+	btn.Text = scriptInfo.Text
+	btn.MouseButton1Click:Connect(function()
+		loadstring(game:HttpGet(scriptInfo.URL))()
+	end)
+end
+
+-- Pestañas
+local function setWelcomeVisible(visible)
+	profileImage.Visible = visible
+	nameLabel.Visible = visible
+	userTag.Visible = visible
+end
+
+tab2.MouseButton1Click:Connect(function()
+	setWelcomeVisible(true)
+	contentFrame.Visible = true
+	scriptsFrame.Visible = false
+	extraFrame.Visible = false
+end)
+
+tab3.MouseButton1Click:Connect(function()
+	setWelcomeVisible(false)
+	contentFrame.Visible = false
+	scriptsFrame.Visible = true
+	extraFrame.Visible = false
+end)
+
+tab4.MouseButton1Click:Connect(function()
+	setWelcomeVisible(false)
+	contentFrame.Visible = false
+	scriptsFrame.Visible = false
+	extraFrame.Visible = true
+end)
+
+collapseBtn.MouseButton1Click:Connect(function()
+	setWelcomeVisible(false)
+	contentFrame.Visible = false
+	scriptsFrame.Visible = false
+	extraFrame.Visible = false
+end)
+
+squareBtn.MouseButton1Click:Connect(function()
+	if contentFrame.Visible == false and scriptsFrame.Visible == false and extraFrame.Visible == false then
+		tab2:Activate()
+		contentFrame.Visible = true
+	end
+end)
+
+closeBtn.MouseButton1Click:Connect(function()
+	screenGui:Destroy()
+end)
+
+-- Inicio
+setWelcomeVisible(true)
+contentFrame.Visible = true
+scriptsFrame.Visible = false
+extraFrame.Visible = false     
+
+
+-- Project Ligma Intro by TC0likesScripting (con frame blanco junto al texto)
+
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+
+-- GUI principal
+local gui = Instance.new("ScreenGui")
+gui.Name = "executor"
+gui.Parent = CoreGui
+gui.ResetOnSpawn = false
+
+-- Imagen principal
+local lel = Instance.new("ImageLabel")
+lel.Size = UDim2.new(0, 100, 0, 100)
+lel.Position = UDim2.new(-0.127, 0, 0.408, 0)
+lel.BackgroundTransparency = 1
+lel.Image = "rbxassetid://134963889843907" -- logo principal
+lel.Parent = gui
+
+-- Anillo giratorio
+local Ring = Instance.new("ImageLabel")
+Ring.Size = UDim2.new(1, 0, 1, 0)
+Ring.BackgroundTransparency = 1
+Ring.Image = "rbxassetid://134963889843907" -- anillo decorativo
+Ring.Parent = lel
+
+-- Órbita
+local Orbit = Instance.new("ImageLabel")
+Orbit.Size = UDim2.new(0, 21, 0, 21)
+Orbit.Position = UDim2.new(0, 0, 0, 10)
+Orbit.BackgroundTransparency = 1
+Orbit.Image = "rbxassetid://" -- punto decorativo
+Orbit.Parent = Ring
+
+-- Frame blanco (aparece junto al texto)
+local WhiteFrame = Instance.new("Frame")
+WhiteFrame.Parent = lel
+WhiteFrame.BackgroundColor3 = Color3.new(0,0,0) -- blanco
+WhiteFrame.BorderColor3 = Color3.fromRGB(153,255,0)
+WhiteFrame.BorderSizePixel = 1
+WhiteFrame.Position = UDim2.new(1, 10, 0, 10)
+WhiteFrame.Size = UDim2.new(0, 270, 0, 80)
+WhiteFrame.BackgroundTransparency = 1 -- empieza invisible
+
+-- Texto
+local TextLabel_2 = Instance.new("TextLabel")
+TextLabel_2.Parent = WhiteFrame
+TextLabel_2.BackgroundTransparency = 1
+TextLabel_2.Size = UDim2.new(1, 0, 1, 0)
+TextLabel_2.Font = Enum.Font.SourceSansBold
+TextLabel_2.Text = "Project eularia by TC0LKIDD | Run your Lua Scripts! Script similar to POLARIA. Status: Injected!"
+TextLabel_2.TextColor3 = Color3.new(255,255,255)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextTransparency = 1
+TextLabel_2.TextWrapped = true
+
+-- Animaciones
+lel:TweenPosition(UDim2.new(0.458, 0, 0.408, 0), "Out", "Linear", 0.4, false)
+task.wait(3)
+lel:TweenPosition(UDim2.new(0, 9, 0, 190), "Out", "Sine", 0.7, false)
+
+-- Mostrar frame y texto con efecto fade-in
+TweenService:Create(WhiteFrame, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+	BackgroundTransparency = 0
+}):Play()
+
+TweenService:Create(TextLabel_2, TweenInfo.new(1.2, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {
+	TextTransparency = 0
+}):Play()
+
+-- Rotación infinita
+task.spawn(function()
+	while task.wait() do
+		Ring.Rotation += 1
+		Orbit.Rotation -= 1
+	end
+end)
